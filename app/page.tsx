@@ -131,43 +131,47 @@ export default function Home() {
                       <td className="px-4 py-2">{ip}</td>
                       <td className="px-4 py-2">{mac || <em>Inconnue</em>}</td>
                       <td className="px-4 py-2">{vendor || <em>Non identifié</em>}</td>
-                      <td className="px-4 py-2 font-semibold space-x-2">
-                        {status === "blocked" ? (
-                          <>
-                            <span className="text-red-600">🚫 Bloqué</span>
+                      <td className="px-4 py-2 font-semibold">
+                        {status === "blocked" && (
+                          <div className="flex items-center gap-2 text-red-600">
+                            🚫 Bloqué
                             <button
                               onClick={() => handleAllow(mac)}
-                              className="ml-2 px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition"
+                              className="px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
                             >
                               Autoriser
                             </button>
-                          </>
-                        ) : status === "allowed" ? (
-                          <>
-                            <span className="text-green-600">✅ Autorisé</span>
+                          </div>
+                        )}
+
+                        {status === "allowed" && (
+                          <div className="flex items-center gap-2 text-green-600">
+                            ✅ Autorisé
                             <button
                               onClick={() => handleBlock(mac)}
-                              className="ml-2 px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                              className="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
                             >
                               Bloquer
                             </button>
-                          </>
-                        ) : (
-                          <>
-                            <span className="text-gray-500">Inconnu</span>
+                          </div>
+                        )}
+
+                        {status !== "blocked" && status !== "allowed" && (
+                          <div className="flex items-center gap-2 text-gray-500">
+                            Inconnu
                             <button
                               onClick={() => handleBlock(mac)}
-                              className="ml-2 px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                              className="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
                             >
                               Bloquer
                             </button>
                             <button
                               onClick={() => handleAllow(mac)}
-                              className="ml-2 px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition"
+                              className="px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
                             >
                               Autoriser
                             </button>
-                          </>
+                          </div>
                         )}
                       </td>
                     </tr>

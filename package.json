@@ -4,9 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev:next": "next dev --turbopack",
+    "dev:server": "nodemon app/api/devices/server.js --exec node",
+    "dev": "concurrently \"npm run dev:next\" \"npm run dev:server\"",
+    "start:next": "next start",
+    "start:server": "node server.js",
+    "start": "npm run start:next",
     "build": "next build",
-    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -22,6 +26,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.0",
+    "nodemon": "^3.1.10",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
